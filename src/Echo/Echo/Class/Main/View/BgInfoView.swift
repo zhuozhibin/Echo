@@ -1,5 +1,5 @@
 //
-//  MainVC.swift
+//  BgInfoView.swift
 //  Echo
 //
 //  Created by Guanliyuan on 2019/8/27.
@@ -8,19 +8,26 @@
 
 import UIKit
 import YYCategories
-import PureLayout
 
-class MainVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class BgInfoView: UIView {
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
         
-        self.view.addSubview(self.bgImageView)
-        self.view.addSubview(self.bgAlphaView)
-        self.view.addSubview(self.helloLabel)
-        self.view.addSubview(self.tipLabel)
+        privateInit()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         
-        self.bgAlphaView.backgroundColor = UIColor.init(hexString: "0xD8D8D830")
+        privateInit()
+    }
+    
+    func privateInit() {
+        self.backgroundColor = UIColor.init(hexString: "0xD8D8D830")
+        
+        self.addSubview(self.helloLabel)
+        self.addSubview(self.tipLabel)
         
         self.helloLabel.autoSetDimensions(to: CGSize(width: 150, height: 50))
         self.helloLabel.autoPinEdge(toSuperviewMargin: .top, withInset: 44)
@@ -34,14 +41,8 @@ class MainVC: UIViewController {
         self.tipLabel.autoPinEdge(.left, to: .left, of: self.helloLabel)
         self.tipLabel.text = "念念不忘,必有回响"
         self.tipLabel.textColor = UIColor.white
-        
-        self.bgImageView.autoPinEdgesToSuperviewEdges()
-        self.bgAlphaView.autoPinEdgesToSuperviewEdges()
     }
     
-    let bgImageView = UIImageView(image: UIImage(named: "bgImage1"))
-    //let bgInfoView = BgInfoView()
-    let bgAlphaView = UIView()
     let helloLabel = UILabel()
     let tipLabel = UILabel()
 
